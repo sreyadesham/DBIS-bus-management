@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+<%- include('navigation.ejs') %>
+
+<main>
+	<table>
+   		<tr>
+      		<th>Employee ID</th>
+      		<th>Name</th>
+      		<th>Number of Months Pending</th>
+          <th>Pending Amount</th>
+   		</tr>
+
+   		<% for (var i=0; i < data.length; i++) { %>
+	 	   <tr>
+    			<td><%= data[i].id %></td>
+      		<td><%= data[i].name %></td>
+      		<td><%= data[i].months %></td>
+          <td><%= data[i].salary * data[i].months %></td>
+
+          <form class="product-form" action="http://localhost:3000/manager/finance" method="POST">
+            <input type="hidden" name="employee_id" id = "employee_id" value="<%= data[i].id %>">
+            <input type="hidden" name="salary" id = "salary" value="<%= data[i].salary %>">
+            <input type="hidden" name="date" id = "date" value="<%= data[i].last %>">
+            <td><button class="btn" type="submit"> Pay 1 month Salary</button></td>
+          </form>
+
+    		</tr>
+   		<% } %>
+	</table>
+
+  <button onclick="location.href='/manager/finance/add-expense'" type="button"> Add Expense </button>
+
+</main>
+<%- include('../includes/end.ejs') %>

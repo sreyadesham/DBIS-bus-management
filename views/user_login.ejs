@@ -1,0 +1,78 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+
+<main>
+
+    <% if (global.user_creds.username=='none') {
+    %><form class="product-form" action="http://localhost:3000/user_login" method="post">
+        <div class="form-control">
+            <label for="username" >Phone number</label>
+            <input type="number"  length="10" name="username"  required>
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password"  name="password" required >
+        </div>
+
+        <input type="hidden" name="trip_details" value="<%=trip_details%>" >
+        <input type="hidden" name="booking_date" value="<%=booking_date%>" >
+
+        <button class="btn" type="submit" style="width: 100%;"> Log in </button>
+        <br>
+        <br>
+    </form>
+
+    <form class="product-form" action="http://localhost:3000/create_account" method="get">
+        <input type="hidden" name="trip_details" value="<%=trip_details%>" >
+        <input type="hidden" name="booking_date" value=<%=booking_date%> >
+
+        <button  class="btn" type="submit" style="width: 100%;"> Create account </button>
+    </form><%
+    }
+    else{ %>
+
+        <table style="width:100%">
+
+            <% for(var i=0; i<bookings.length; i++){ %>
+            
+              <% if (i==0){ %>
+                <tr>
+                    <th>Date</th>
+                    <th>Seat number</th>
+                    <th>Passenger name</th>
+                    <th>Age</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr><%
+              }
+            
+              %>
+                <tr>
+                    <th><%=bookings[i].date.toString().slice(0,10);%></th>
+                    <th><%=bookings[i].seat_no%></th>
+                    <th><%=bookings[i].seat_owner%></th>
+                    <th><%=bookings[i].age%></th>
+                    <th><%=bookings[i].status%></th>
+                    <th><form action="http://localhost:3000/cancel" method="post">
+                        <button class="btn" type="submit">cancel</button>
+                        <input type="hidden" name="seat_details" value="<%=JSON.stringify(bookings[i])%>">     
+                    </form></th>
+                </tr><% } %>
+            
+            </table>
+   
+   <%if(bookings.length==0) {%>
+
+    <h2>No bookings yet</h2>
+<%} }%>
+
+    %>
+
+    
+</main>
+<%- include('includes/end.ejs') %>

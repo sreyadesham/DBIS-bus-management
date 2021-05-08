@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+<%- include('navigation.ejs') %>
+
+<main>
+	<table>
+   		<tr>
+      		<th>Employee ID</th>
+      		<th>Name</th>
+      		<th>Phone Number</th>
+          	<th>Role</th>
+      		<th>Salary</th>
+          	<th>Start Date</th>
+   		</tr>
+
+   		<% for (var i=0; i < data.length; i++) { %>
+	 	   <tr>
+    			<td><%= data[i].id %></td>
+      			<td><%= data[i].name %></td>
+      			<td><%= data[i].phone_no %></td>
+            	<td><%= data[i].role %></td>
+      			<td><%= data[i].salary %></td>
+            	<td><%= data[i].start %></td>
+    		</tr>    
+   		<% } %>
+	</table>
+
+	<button onclick="location.href='/manager/add-employee'" type="button"> Add Employee </button>
+
+</main>
+<%- include('../includes/end.ejs') %>

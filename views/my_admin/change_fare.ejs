@@ -1,0 +1,24 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+    <form class="product-form" action="http://localhost:3000/admin-change-fare" method="POST">
+        <div class="form-control">
+            <label for="name">Trip Id</label>
+            <input type="text" name="trip_id" id="trip_id" value="<% if (editing) { %><%= inp[0].trip_id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Cost</label>
+            <input type="text" name="cost" id="cost" value="<% if (editing) { %><%= inp[0].cost %><% } %>">
+        </div>
+        
+        <button class="btn" type="submit">Update</button>
+    </form>
+    <h> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </h>
+</main>
+<%- include('../includes/end.ejs') %>

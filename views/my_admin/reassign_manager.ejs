@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+    <form class="product-form" action="http://localhost:3000/admin-reassign-manager" method="POST">
+        <div class="form-control">
+            <label for="name">Manager Id</label>
+            <input type="text" name="manager_id" id="manager_id" value="<% if (editing) { %><%= inp[0].manager_id %><% } %>">
+        </div>
+        
+        <div class="form-control">
+            <label for="pass">Depot Id</label>
+            <input type="text" name="depot_id" id="depot_id" value="<% if (editing) { %><%= inp[0].depot_id %><% } %>">
+        </div>
+        
+    
+
+        <button class="btn" type="submit">Re assign</button>
+    </form>
+    <h> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </h>
+</main>
+<%- include('../includes/end.ejs') %>

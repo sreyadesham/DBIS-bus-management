@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+   
+    <h1> Coupons </h1>
+    <form action="http://localhost:3000/admin-add-coupon" method="get">
+        <button class="btn" type="submit">Add a Coupon</button>
+    </form>
+
+    <table style="width:100%">
+
+        <% for(var i=0; i<coupons.length; i++){ 
+        
+          if (i==0){
+          %>
+            <tr>
+                <th>coupon_id</th>
+                <th>credits</th>
+                <th>min_credits</th>
+                <th>offer_amount</th>
+                <th>offer_percentage</th>
+                <th>min_amount</th>
+                <th>expiry_date</th>
+            </tr><%
+          }
+          
+          %>
+            <tr>
+                <th><%=coupons[i].coupon_id %></th>
+                <th><%=coupons[i].credits%></th>
+                <th><%=coupons[i].min_credits%></th>
+                <th><%=coupons[i].offer_amount%></th>
+                <th><%=coupons[i].offer_percentage%></th>
+                <th><%=coupons[i].min_amount%></th>
+                <th><%=coupons[i].expiry_date%></th>
+            </tr><%
+          
+        
+        } %>    
+        </table>
+</main>
+<%- include('../includes/end.ejs') %>

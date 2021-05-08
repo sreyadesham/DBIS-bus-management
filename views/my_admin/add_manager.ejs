@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+    <form class="product-form" action="http://localhost:3000/admin-add-manager" method="POST">
+        <div class="form-control">
+            <label for="name">Manager Id</label>
+            <input type="text" name="manager_id" id="manager_id" value="<% if (editing) { %><%= inp[0].manager_id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Name</label>
+            <input type="text" name="name" id="name" value="<% if (editing) { %><%= inp[0].name %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Phone No</label>
+            <input type="text" name="phone_no" id="phone_no" value="<% if (editing) { %><%= inp[0].phone_no %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="name">Salary</label>
+            <input type="text" name="salary" id="salary" value="<% if (editing) { %><%= inp[0].salary %><% } %>">
+        </div>
+        
+        <div class="form-control">
+            <label for="pass">Start Date</label>
+            <input type="text" name="start_date" id="start_date" value="<% if (editing) { %><%= inp[0].start_date %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Depot Id</label>
+            <input type="text" name="depot_id" id="depot_id" value="<% if (editing) { %><%= inp[0].depot_id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Password</label>
+            <input type="text" name="password" id="password" value="<% if (editing) { %><%= inp[0].password %><% } %>">
+        </div>
+    
+
+        <button class="btn" type="submit">Add</button>
+    </form>
+    <h> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </h>
+</main>
+<%- include('../includes/end.ejs') %>

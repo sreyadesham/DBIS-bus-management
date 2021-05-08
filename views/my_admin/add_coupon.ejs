@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+    <form class="product-form" action="http://localhost:3000/admin-add-coupon" method="POST">
+        <div class="form-control">
+            <label for="name">Coupon Id</label>
+            <input type="text" name="coupon_id" id="coupon_id" value="<% if (editing) { %><%= inp[0].coupon_id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Credits</label>
+            <input type="text" name="credits" id="credits" value="<% if (editing) { %><%= inp[0].credits %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Min Credits</label>
+            <input type="text" name="min_credits" id="min_credits" value="<% if (editing) { %><%= inp[0].min_credits %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="name">Offer Amount</label>
+            <input type="text" name="offer_amount" id="offer_amount" value="<% if (editing) { %><%= inp[0].offer_amount %><% } %>">
+        </div>
+        
+        <div class="form-control">
+            <label for="pass">Offer Percentage</label>
+            <input type="text" name="offer_percentage" id="offer_percentage" value="<% if (editing) { %><%= inp[0].offer_percentage %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="name">Min Amount</label>
+            <input type="text" name="min_amount" id="min_amount" value="<% if (editing) { %><%= inp[0].min_amount %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Expiry Date</label>
+            <input type="text" name="expiry_date" id="expiry_date" value="<% if (editing) { %><%= inp[0].expiry_date %><% } %>">
+        </div>
+    
+
+        <button class="btn" type="submit">Add</button>
+    </form>
+    <h> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </h>
+</main>
+<%- include('../includes/end.ejs') %>

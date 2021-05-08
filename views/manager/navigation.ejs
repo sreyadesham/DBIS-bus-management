@@ -1,0 +1,18 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+
+            <li class="main-header__item">
+                <a class="<%= path === '/manager/view-buses' ? 'active' : '' %> "href="/manager/view-buses"> View Buses </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/manager/manage-employee' ? 'active' : '' %>" href="/manager/manage-employee"> Manage Employees </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/manager/finance' ? 'active' : '' %>" href="/manager/finance"> Finance </a>
+            </li>
+        </ul>
+    </nav>
+</header>

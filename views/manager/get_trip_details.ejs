@@ -1,0 +1,63 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigation.ejs') %>
+
+<main>
+	<form class="product-form" action="http://localhost:3000/manager/get-trip-details" method="POST">
+        <div class="form-control">
+            <label for="route">Route: </label>
+            <select name="route" id="route" >
+                <%
+                var options = data;
+                for ( var i = 0; i < options.length; i++ )
+                {
+                    var selected = ( i == 0 ) ? "selected" : "";
+                    %><option value="<%=options[i].id1 + " " + options[i].id2 %>" <%=selected %>><%=options[i].source + " to " + options[i].destination %></option><%
+                }
+                %>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="date"> Date: </label>
+            <input id="date" type="date" name="date" value="<% if (editing) { %><%= inp[0].start %><% } %>">
+        </div>
+
+	<button class="btn" type="submit"> View Trip Details </button>
+	</form>
+
+    <% for (var i=0; i<bus.length; i++) { %>
+        <h4> Bus registration number : <%= bus[i].reg_no %> </h4>
+        <h4> Employee 1 Name : <%= bus[i].name1 %> </h4>
+        <h4> Employee 1 Phone : <%= bus[i].phone1 %> </h4>
+        <h4> Employee 2 Name : <%= bus[i].name2 %> </h4>
+        <h4> Employee 2 Phone : <%= bus[i].phone2 %> </h4>
+    <% } %>
+
+    <table>
+        <% for (var i=0; i < seats.length; i++) { 
+            if (i == 0) { %>
+                <tr>
+                    <th>Seat Number</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Contact Number</th>
+                </tr>
+           <% } %>
+           <tr>
+                <td><%= seats[i].seat_no %></td>
+                <td><%= seats[i].name %></td>
+                <td><%= seats[i].age %></td>
+                <td><%= seats[i].sex %></td>
+                <td><%= seats[i].phoneno %></td>
+            </tr>
+        <% } %>
+    </table>
+
+</main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,86 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+
+<form class = "product-form" action="http://localhost:3000/admin-occ-sales" method="post">
+<div class="form-control">
+<label for="k">Top k trips by occupancy</label>
+  <input type="number" name="k1" id="k1" value="<% if (editing) { %><%= inp[0].k1 %><% } %>">
+</div>
+<br>
+
+
+<label for="date1">Start Date:</label>
+  <input type="date" name="date1" value="<% if (editing) { %><%= inp[0].date1 %><% } %>">
+  <br><br>
+
+<label for="date2">End Date:</label>
+  <input type="date" name="date2" value="<% if (editing) { %><%= inp[0].date2 %><% } %>">
+  <br><br>
+
+<button class="btn" type="submit">Search</button>
+</form>
+
+
+<form id="<%= editing === true ? 'my-form' : '' %>">
+  <input type="hidden" id = "points" value="<% if (editing) { %><%= result%><% } %>">
+</form>
+<div id="<%= editing === true ? 'chartDiv' : '' %>"  style="width:75%; height:500px; margin:0 auto;">
+
+</div>
+
+<form class = "product-form" action="http://localhost:3000/admin-cost-sales" method="post">
+  <div class="form-control">
+  <label for="k">Top k trips by cost</label>
+    <input type="number" name="k2" id="k2" value="<% if (editing1) { %><%= inp1[0].k2 %><% } %>">
+  </div>
+  <br>
+  
+  
+  <label for="date1">Start Date:</label>
+    <input type="date" name="datee1" value="<% if (editing1) { %><%= inp1[0].datee1 %><% } %>">
+    <br><br>
+  
+  <label for="date2">End Date:</label>
+    <input type="date" name="datee2" value="<% if (editing1) { %><%= inp1[0].datee2 %><% } %>">
+    <br><br>
+ 
+  <button class="btn" type="submit">Search</button>
+  </form>
+  
+  
+  <form id="<%= editing1 === true ? 'my-form' : '' %>">
+    <input type="hidden" id = "points1" value="<% if (editing1) { %><%= result1%><% } %>">
+  </form>
+  <div id="<%= editing1 === true ? 'chartDiv' : '' %>"  style="width:75%; height:500px; margin:0 auto;">
+  
+  </div>
+
+</main>
+
+</body>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"> </script>
+<script>
+  var inputs = document.getElementById("my-form").elements;
+  var x = JSON.parse(inputs[0].value).my;
+
+  JSC.Chart('chartDiv', {
+    title_label_text: '',
+		annotations: [{
+			label_text: '',
+			position: 'bottom left'
+		}],
+		xAxis_crosshair_enabled: true,
+		defaultPoint_tooltip: '%seriesName <b>%yValue</b> years',
+		series: x
+  });
+
+</script>
+</html>

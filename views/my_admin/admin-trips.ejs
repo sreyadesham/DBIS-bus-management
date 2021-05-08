@@ -1,0 +1,54 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+   
+    <h1> Trips </h1>
+    <form action="http://localhost:3000/admin-change-fare" method="get">
+        <button class="btn" type="submit">Change Fare</button>
+    </form>
+
+    <table style="width:100%">
+
+        <% for(var i=0; i<trips.length; i++){ 
+        
+          if (i==0){
+          %>
+            <tr>
+                <th>trip_id</th>
+                <th>route_id</th>
+                <th>bus_id</th>
+                <th>start_day</th>
+                <th>end_day</th>
+                <th>start_time</th>
+                <th>end_time</th>
+                <th>cost_per_seat</th>
+                <th>source</th>
+                <th>destination</th>
+            </tr><%
+          }
+          
+          %>
+            <tr>
+                <th><%=trips[i].trip_id %></th>
+                <th><%=trips[i].route_id %></th>
+                <th><%=trips[i].bus_id %></th>
+                <th><%=trips[i].start_day%></th>
+                <th><%=trips[i].end_day%></th>
+                <th><%=trips[i].start_time%></th>
+                <th><%=trips[i].end_time%></th>
+                <th><%=trips[i].cost_per_seat%></th>
+                <th><%=trips[i].source%></th>
+                <th><%=trips[i].destination%></th>
+            </tr><%
+          
+        
+        } %>    
+        </table>
+</main>
+<%- include('../includes/end.ejs') %>

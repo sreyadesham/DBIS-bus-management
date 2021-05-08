@@ -1,0 +1,92 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+
+<main>
+
+<h2> Book Tickets </h2>
+<!-- //<%console.log(vacant_seats);%>
+<%console.log(vacant_seats.length);%> -->
+<p> Present credits: <%=credits%> </p>
+
+<p> Number of seats available: <%=vacant_seats%>  </p>
+<form action="http://localhost:3000/allot_seats" method="post">
+<label for="num_seats" >Select number of seats: &emsp;</label>
+<input type="number" name="sel_num_seats" min="1"  max="<%=vacant_seats%>" value=<%=num_selected%> >
+<input type="hidden" name="details" value="<%=JSON.stringify(details)%>">
+<input type="hidden" name="booking_date" value=<%=booking_date%>>
+<input type="hidden" name="vacant_seats" value=<%=vacant_seats%>>
+<input type="hidden" name="credits" value=<%=credits%>>
+
+<button type="submit" class="btn"> Enter</button>
+</form>
+
+<br><br>
+<form action="http://localhost:3000/confirm_seats" method="post">
+<table style="width:100%;border: 1px  solid  #0033CC;padding:10px">
+
+    <% for(var i=0; i<num_selected; i++){ 
+    
+      if (i==0){
+      %>
+        <tr>
+            <th>S.No</th>
+            <th>Passenger Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr><%
+      }
+      
+      %>
+        <tr>
+            <th><%=i%></th>
+            <th><input name="name" type="text" placeholder="Name" required></th>
+            <th><input name="age" type="number" placeholder="Age" required></th>
+            <th><select name="gender" id="source_city" >
+              <option value="F" selected >F</option>
+              <option value="M"  >M</option>
+              <option value="0"  >O</option></select></th>
+        </tr><% } %>
+    
+    </table><br><br>
+<% if (num_selected>0) { %>
+
+<p>Tickets cost = <%=num_selected*details.cost_per_seat%></p><br>
+
+<%   if (coupons.length>0) { %>
+    <select name="coupon"  class="btn">
+    <option value="Select Coupon" selected >Select Coupon</option>
+    
+    <%
+    var options = coupons;
+    for ( var i = 0; i < options.length; i++ )
+    {
+        %><option value="<%=JSON.stringify(options[ i ]) %>" >
+          <%=options[ i ].coupon_id %>, offer: <%=((options[ i ].offer_amount=='NULL') ? options[ i ].offer_percentage : options[ i ].offer_amount)%>
+          <%=((options[ i ].offer_amount=='NULL') ? 'percent'   : 'Rs' )%></option><%
+    }
+    %></select><%
+
+    %>
+
+    <% } 
+    else{
+    %><input type="hidden" name="coupon" value='undefined'><%
+    }
+    
+    %>
+
+<button class="btn" type="submit">Confirm booking</button>
+<%}%>
+<input type="hidden" name="details" value="<%=JSON.stringify(details)%>">
+<input type="hidden" name="booking_date" value=<%=booking_date%>>
+<input type="hidden" name="vacant_seats" value=<%=vacant_seats%>>
+<input type="hidden" name="credits" value=<%=credits%>>
+
+</form>
+</main>
+<%- include('includes/end.ejs') %>

@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+   
+    <h1> Buses </h1>
+    <form action="http://localhost:3000/admin-add-bus" method="get">
+        <button class="btn" type="submit">Add a Bus</button>
+    </form>
+
+    <table style="width:100%">
+        <% for(var i=0; i<buses.length; i++){ 
+          if (i==0){
+          %>
+            <tr>
+                <th>id</th>
+                <th>reg_no</th>
+                <th>ac</th>
+                <th>type</th>
+                <th>depot_id</th>
+                <th>no_of_rows</th>
+                <th>row_size</th>
+            </tr><%
+          }
+          
+          %>
+            <tr>
+                <th><%= buses[i].bus_id %></th>
+                <th><%=buses[i].reg_number%></th>
+                <th><%=buses[i].ac%></th>
+                <th><%=buses[i].type%></th>
+                <th><%=buses[i].depot_id%></th>
+                <th><%=buses[i].no_of_rows%></th>
+                <th><%=buses[i].row_size%></th>
+            </tr><%
+          
+        
+        } %>    
+        </table>
+</main>
+<%- include('../includes/end.ejs') %>

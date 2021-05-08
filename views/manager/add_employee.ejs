@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigation.ejs') %>
+
+<main>
+	<form class="product-form" action="http://localhost:3000/manager/add-employee" method="POST">
+		<div class="form-control">
+    			<label for="name">Name: </label>
+    			<input id="name" type="text" name="name" value="<% if (editing) { %><%= inp[0].name %><% } %>">
+    	</div>
+
+    	<div class="form-control">
+    		<label for="phone_no">Phone Number: </label>
+    		<input id="phone_no" type="phone_number" name="phone_no" value="<% if (editing) { %><%= inp[0].phone_no %><% } %>">
+    	</div>
+
+        <div class="form-control">
+            <label for="role">Role: </label>
+            <select name="role" id="role" >
+                <%
+                var options = ["driver", "conductor"];
+                for ( var i = 0; i < options.length; i++ )
+                {
+                    var selected = ( i == 0 ) ? "selected" : "";
+                    %><option value="<%=options[ i ] %>" <%=selected %>><%=options[ i ] %></option><%
+                }
+                %>
+            </select>
+        </div>
+
+        <div class="form-control">
+            <label for="salary">Salary: </label>
+            <input id="salary" type="number" name="salary" value="<% if (editing) { %><%= inp[0].salary %><% } %>">
+        </div>
+
+        <div class="form-control">
+            <label for="start">Start Date: </label>
+            <input id="start" type="date" name="start" value="<% if (editing) { %><%= inp[0].start %><% } %>">
+        </div>
+
+	<button class="btn" type="submit"> ADD </button>
+	</form>
+
+</main>
+<%- include('../includes/end.ejs') %>

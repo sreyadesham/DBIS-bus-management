@@ -1,0 +1,34 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-buses' ? 'active' : '' %>" href="/admin-buses">Buses</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-depots' ? 'active' : '' %>" href="/admin-depots">Depots</a> 
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-coupons' ? 'active' : '' %>" href="/admin-coupons">Coupons</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-trips' ? 'active' : '' %>" href="/admin-trips">Trips</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-managers' ? 'active' : '' %>" href="/admin-managers">Managers</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-sales' ? 'active' : '' %>" href="/admin-sales">Sales</a>
+            </li>
+            <%if(global.admin_creds.username!='none') { %>
+                <li class="main-header__item">
+                    <a style="color: red;" href="/admin-logout">Log out</a>
+                </li>
+                <% } else {%>
+                <li></li> <% } %>
+
+        </ul>
+    </nav>
+</header>

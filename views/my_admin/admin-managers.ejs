@@ -1,0 +1,62 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+   
+    <h1> Managers </h1>
+    <form action="http://localhost:3000/admin-add-manager" method="get">
+        <button class="btn" type="submit">Add a Manager</button>
+    </form>
+
+    <form action="http://localhost:3000/admin-reassign-manager" method="get">
+        <button class="btn" type="submit">Reassign a Manager</button>
+    </form>
+
+    <table style="width:100%">
+
+        <% for(var i=0; i<managers.length; i++){ 
+          if (i==0){
+          %>
+            <tr>
+                <th>manager_id</th>
+                <th>name</th>
+                <th>phone_no</th>
+                <th>salary</th>
+                <th>start_date</th>
+                <th>end_date</th>
+                <th>depot_id</th>
+                <th>password</th>
+            </tr><%
+          }
+          
+          %>
+            <tr>
+                <th><%=managers[i].manager_id %></th>
+                <th><%=managers[i].name%></th>
+                <th><%=managers[i].phone_no%></th>
+                <th><%=managers[i].salary%></th>
+                <th><%=managers[i].start_date%></th>
+                <th><%=managers[i].end_date%></th>
+                <th><%=managers[i].depot_id%></th>
+                <th><%=managers[i].password%></th>
+                <th><form action="http://localhost:3000/admin-del-manager" method="post">
+                     
+                <%if(managers[i].end_date == null){ %>
+                    <button class="btn1" type="submit">Vacate </button> 
+                    <input type="hidden" name="manager_id" id = "manager_id" value="<%= managers[i].manager_id %>">
+                <% }%>
+                    
+                    
+                </form></th>
+            </tr><%
+          
+        
+        } %>    
+        </table>
+</main>
+<%- include('../includes/end.ejs') %>

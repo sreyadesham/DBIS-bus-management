@@ -1,0 +1,41 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+<%console.log(booking_date);%>
+<main>
+
+    <form class="product-form" action="http://localhost:3000/create_account" method="post">
+        <div class="form-control">
+            <label for="name">Name</label>
+            <input type="text" name="name"  required>
+        </div>
+
+        <div class="form-control">
+            <label for="email_id">email_id</label>
+            <input type="text" name="email_id"  required>
+        </div>
+        
+        <div class="form-control">
+            <label for="contact_no">contact_no</label>
+            <input type="text" name="contact_no"  required>
+        </div>
+
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" minlength="8" required >
+        </div>
+
+        <input type="hidden" name="trip_details" value="<%=trip_details%>" >
+        <input type="hidden" name="booking_date" value=<%=booking_date%> >
+
+        <button class="btn" type="submit"> Create Account</button>
+        
+    </form>
+
+
+</main>
+<%- include('includes/end.ejs') %>

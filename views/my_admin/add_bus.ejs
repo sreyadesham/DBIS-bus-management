@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('navigate.ejs') %>
+
+<main>
+    <form class="product-form" action="http://localhost:3000/admin-add-bus" method="POST">
+        <div class="form-control">
+            <label for="name">Id</label>
+            <input type="text" name="id" id="id" value="<% if (editing) { %><%= inp[0].id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Reg Number</label>
+            <input type="text" name="reg_no" id="reg_no" value="<% if (editing) { %><%= inp[0].reg_no %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">AC</label>
+            <input type="text" name="ac" id="ac" value="<% if (editing) { %><%= inp[0].ac %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="name">Type</label>
+            <input type="text" name="type" id="type" value="<% if (editing) { %><%= inp[0].type %><% } %>">
+        </div>
+        
+        <div class="form-control">
+            <label for="pass">Depot_id</label>
+            <input type="text" name="depot_id" id="depot_id" value="<% if (editing) { %><%= inp[0].depot_id %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="name">Rows</label>
+            <input type="text" name="rows" id="rows" value="<% if (editing) { %><%= inp[0].rows %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="pass">Row Size</label>
+            <input type="text" name="row_size" id="row_size" value="<% if (editing) { %><%= inp[0].row_size %><% } %>">
+        </div>
+    
+
+        <button class="btn" type="submit">Add</button>
+    </form>
+    <h> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </h>
+</main>
+<%- include('../includes/end.ejs') %>

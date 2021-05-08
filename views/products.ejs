@@ -1,0 +1,133 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+<style>
+    #front-form{
+        width:50vw;
+        margin:auto;
+        size: 20px;
+        border: 1px  solid  #0033CC;
+        padding: 20px;
+        background-color: #FFFDD0;
+    }
+
+    .select_box{
+        width: 100%;
+        padding: 10px;
+    }
+</style>
+</head>
+
+<body>
+<%- include('includes/navigation.ejs') %>
+<main>
+
+<br>
+<br>
+<div id="front-form">
+<form action="http://localhost:3000/search_buses" method="get">
+
+
+<label for="source">From</label>
+<select name="source" id="source_city" class="select_box" >
+<option value="Select Depot" selected >Select Depot</option>
+
+<%
+var options = rows;
+for ( var i = 0; i < options.length; i++ )
+{
+    %><option value="<%=options[ i ].depot_name %>" ><%=options[ i ].depot_name %></option><%
+}
+%>
+</select>
+<br>
+<br>
+
+
+<label for="dest_city">To</label>
+
+<select name="dest_city" id="dest_city" class="select_box" >
+<option value="Select Depot" selected >Select Depot</option>
+<%
+var options = rows;
+for ( var i = 0; i < options.length; i++ )
+{
+    %><option value="<%=options[ i ].depot_name %>" ><%=options[ i ].depot_name %></option><%
+}
+%>
+</select>
+<br>
+<br>
+
+<label for="date">Start Date:</label>
+  <input type="date" name="date"  class="select_box">
+  <br><br>
+<input type="hidden" name="depots_list" value=<%=JSON.stringify(rows)%>>
+<button class="btn" type="submit">Search buses</button>
+</form>
+</div>
+
+<br><br>
+<table style="width:100%">
+
+<% for(var i=0; i<buses.length; i++){ 
+
+  if (i==0){
+  %>
+    <tr>
+        <th>Bus</th>
+        <th>Type</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Cost</th>
+        <th></th>
+    </tr><%
+  }
+
+  %>
+    <tr>
+        <th><%=buses[i].reg_number%></th>
+        <th><%=buses[i].type%>,<%=buses[i].ac%></th>
+        <th><%=buses[i].start_day%>, <%=buses[i].start_time%></th>
+        <th><%=buses[i].end_day%>, <%=buses[i].end_time%></th>
+        <th><%=buses[i].cost_per_seat%></th>
+        <th><form action="http://localhost:3000/seats_alloc" method="get">
+            <button class="btn" type="submit">Book tickets</button>
+            <input type="hidden" name="trip_details" value="<%=JSON.stringify(buses[i])%>">     
+            <input type="hidden" name="booking_date" value=<%=date%>>
+        </form></th>
+    </tr><% } %>
+
+</table>
+<!--
+    <% for(var i=0; i<rows.length; i++){ %>
+            <div class="grid">
+                <article class = "product-item">
+                    <header class="card__header">
+                        <h1 class="product__title">
+                            <%= rows[i].title %>
+                        </h1>
+                    </header>
+                    <div class="card__image">
+                        <img src= <%= rows[i].image%>>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="product__price">Price:
+                            <%= rows[i].price %>
+                        </h3>
+                        <h3 class="product__description">Quantity:
+                            <%= rows[i].quantity %>
+                        </h3>
+                    </div>
+                    <div class="card__actions">
+                        <form action="http://localhost:3000/cart" method="post">
+                            <button class="btn" type="submit">Add to Cart</button>
+                            <input type="hidden" name="product" id = "item_id" value=<%= rows[i].id%>>
+                            </form>
+                    </div>
+                </article>
+            </div>
+        <% } %>-->
+
+</main>
+<%- include('includes/end.ejs') %>

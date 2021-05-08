@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('../includes/navigation.ejs') %>
+
+<main>
+	<form class="product-form" action="http://localhost:3000/manager/login" method="POST">
+		<div class="form-control">
+    			<label for="source">Source: </label>
+    			<input id="source" type="text" name="source" value="<% if (editing) { %><%= inp[0].source %><% } %>">
+    	</div>
+
+    		<div class="form-control">
+    			<label for="destination">Password: </label>
+    			<input id="manager_password" type="password" name="manager_password" value="<% if (editing) { %><%= inp[0].password %><% } %>">
+    		</div>
+
+	<button class="btn" type="submit">Login</button>
+	</form>
+
+	<h><center> <%if(editing) {%>Wrong Credentials<%}else{ %><%} %> </center> </h>
+</main>
+<%- include('../includes/end.ejs') %>
+
+
+
+
+Destination_id:
+Bus_Id:
+Day:
+Amount:
+Description:
+ADD

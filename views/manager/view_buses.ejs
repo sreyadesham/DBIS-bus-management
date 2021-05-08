@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+<%- include('navigation.ejs') %>
+
+<main>
+	<p> Depot: <%= source[0].source %></p>
+	<table>
+   		<tr>
+      		<th>Bus Registration Number</th>
+          <th>Source</th>
+      		<th>Destination</th>
+      		<th>Start Day</th>
+          <th>Start Time</th>
+      		<th>End Day</th>
+          <th>End Time</th>
+      		<th>Ticket Cost</th>
+   		</tr>
+
+   		<% for (var i=0; i < data.length; i++) { %>
+	 	   <tr>
+    			<td><%= data[i].reg_no %></td>
+          <td><%= data[i].source %></td>
+      		<td><%= data[i].destination %></td>
+      		<td><%= data[i].start_day %></td>
+          <td><%= data[i].start_time %></td>
+      		<td><%= data[i].end_day %></td>
+          <td><%= data[i].end_time %></td>
+      		<td><%= data[i].cost %></td>
+    		</tr>
+   		<% } %>
+	</table>
+
+
+  <button onclick="location.href='/manager/get-trip-details'" type="button"> Get Trip Details </button>
+
+</main>
+<%- include('../includes/end.ejs') %>

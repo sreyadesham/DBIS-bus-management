@@ -1,0 +1,55 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+
+            <li class="main-header__item">
+                <a class="<%= path === '/prods' ? 'active' : '' %>" href="/prods">Buses</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/manager/login' ? 'active' : '' %>" href="/manager/login">Depot Manager</a> 
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin-login' ? 'active' : '' %>" href="/admin-login">Admin</a>
+            </li>
+            <li class="main-header__item" >
+                <a class="<%= path === '/user_login' ? 'active' : '' %>" href="/user_login">
+                    <% if(global.user_creds.username=='none') {%>User login<% } else { %>Cancel tickets<% } %>
+                </a>
+            </li>
+            <%if(global.user_creds.username!='none') { %>
+            <li class="main-header__item">
+                <a style="color: red;" href="/logout">Log out</a>
+            </li>
+            <% } else {%>
+            <li></li> <% } %>
+        </ul>
+    </nav>
+</header>
+
+
+<nav class="mobile-nav">
+        <ul class="mobile-nav__item-list">
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/prods' ? 'active' : '' %>" href="/prods">Buses</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Depot Manager</a> 
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Admin</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/user_login' ? 'active' : '' %>" href="/user_login">
+                        <% if(global.user_creds.username=='none') {%>User login<% } else { %>Cancel tickets<% } %>
+                    </a>                
+                </li>
+                <%if(global.user_creds.username!='none') { %>
+                <li class="main-header__item">
+                <a style="color: red;" href="/logout">Log out</a>
+                </li>
+                <% } else {%>
+                <li></li> <% } %>
+        </ul>
+</nav>
